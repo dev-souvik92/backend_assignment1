@@ -1,37 +1,37 @@
 const express = require("express");
 const app = express();
 const { initializeDatabase } = require("./db/db.connect");
-const fs = require("fs");
+// const fs = require("fs");
 const Books = require("./models/books.models");
 
 initializeDatabase();
 
-const jsonData = fs.readFileSync("books.json", "utf-8");
-const booksData = JSON.parse(jsonData);
+// const jsonData = fs.readFileSync("books.json", "utf-8");
+// const booksData = JSON.parse(jsonData);
 
 app.use(express.json());
 
-function seedData() {
-  try {
-    for (const bookData of booksData) {
-      const newBook = new Books({
-        title: bookData.title,
-        author: bookData.author,
-        publishedYear: bookData.publishedYear,
-        genre: bookData.genre,
-        language: bookData.language,
-        country: bookData.country,
-        rating: bookData.rating,
-        summary: bookData.summary,
-        coverImageUrl: bookData.coverImageUrl,
-      });
+// function seedData() {
+//   try {
+//     for (const bookData of booksData) {
+//       const newBook = new Books({
+//         title: bookData.title,
+//         author: bookData.author,
+//         publishedYear: bookData.publishedYear,
+//         genre: bookData.genre,
+//         language: bookData.language,
+//         country: bookData.country,
+//         rating: bookData.rating,
+//         summary: bookData.summary,
+//         coverImageUrl: bookData.coverImageUrl,
+//       });
 
-      newBook.save();
-    }
-  } catch (error) {
-    console.log("Error seeding the data", error);
-  }
-}
+//       newBook.save();
+//     }
+//   } catch (error) {
+//     console.log("Error seeding the data", error);
+//   }
+// }
 
 // seedData();
 
